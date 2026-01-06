@@ -16,8 +16,30 @@
         </header>
 
         <main class="chat-area">
+            <div class="mode-selector">
+                <label for="mode">Select Mode:</label>
+                <select id="mode">
+                    <option value="general">General Query</option>
+                    <option value="link">Link Scanning</option>
+                    <option value="email">Email Scanning</option>
+                    <option value="file">File Scanning</option>
+                </select>
+            </div>
+
             <div class="input-container">
-                <textarea id="userInput" placeholder="Analyze a suspicious email • Assess password strength • Evaluate cloud vulnerability • Detect phishing indicators • Explain zero-trust policy..."></textarea>
+                <div id="general-input" class="input-group">
+                    <textarea id="userInputGeneral" placeholder="Analyze a suspicious email • Assess password strength • Evaluate cloud vulnerability • Detect phishing indicators • Explain zero-trust policy..."></textarea>
+                </div>
+                <div id="link-input" class="input-group" style="display: none;">
+                    <input type="url" id="userInputLink" placeholder="Enter URL to scan (e.g., https://suspicious-site.com)">
+                </div>
+                <div id="email-input" class="input-group" style="display: none;">
+                    <textarea id="userInputEmail" placeholder="Paste email content to scan for phishing or threats..."></textarea>
+                </div>
+                <div id="file-input" class="input-group" style="display: none;">
+                    <input type="file" id="userInputFile" accept=".txt,.log,.js,.html">
+                    <p class="note">Text-based files only (e.g., .txt, .log). AI analyzes content for risks.</p>
+                </div>
                 <button id="analyzeBtn">
                     <span>Analyze Threat</span>
                 </button>
@@ -32,7 +54,6 @@
             </div>
         </main>
 
-        <!-- Session History -->
         <section class="history-section">
             <div class="tab-header">
                 <h3>Session Analytics & History</h3>
