@@ -5,62 +5,29 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>AI Security Co-Pilot for Humans</title>
     <link rel="stylesheet" href="style.css">
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Orbitron:wght@500;700&display=swap" rel="stylesheet">
 </head>
 <body>
     <div class="container">
         <header class="header">
-            <h1>AI Security Co-Pilot <span>for Humans</span></h1>
-            <p class="tagline">Empowering enterprise defenders with AI precision — without replacing human mastery.</p>
-            <p class="subtitle">Real-time threat analysis • Actionable insights • Human-centric cybersecurity intelligence</p>
+            <h1>AI Security Co-Pilot</h1>
+            <p>Your personal AI assistant for staying secure online.</p>
         </header>
 
-        <main class="chat-area">
-            <div class="mode-selector">
-                <label for="mode">Select Mode:</label>
-                <select id="mode">
-                    <option value="general">General Query</option>
-                    <option value="link">Link Scanning</option>
-                    <option value="email">Email Scanning</option>
-                    <option value="file">File Scanning</option>
-                </select>
+        <main class="main">
+            <div class="input-box">
+                <textarea id="userInput" placeholder="e.g., Help make a strong password, check if this link is safe, analyze this email..."></textarea>
+                <button id="analyzeBtn">Analyze</button>
             </div>
 
-            <div class="input-container">
-                <div id="general-input" class="input-group">
-                    <textarea id="userInputGeneral" placeholder="Analyze a suspicious email • Assess password strength • Evaluate cloud vulnerability • Detect phishing indicators • Explain zero-trust policy..."></textarea>
-                </div>
-                <div id="link-input" class="input-group" style="display: none;">
-                    <input type="url" id="userInputLink" placeholder="Enter URL to scan (e.g., https://suspicious-site.com)">
-                </div>
-                <div id="email-input" class="input-group" style="display: none;">
-                    <textarea id="userInputEmail" placeholder="Paste email content to scan for phishing or threats..."></textarea>
-                </div>
-                <div id="file-input" class="input-group" style="display: none;">
-                    <input type="file" id="userInputFile" accept=".txt,.log,.js,.html">
-                    <p class="note">Text-based files only (e.g., .txt, .log). AI analyzes content for risks.</p>
-                </div>
-                <button id="analyzeBtn">
-                    <span>Analyze Threat</span>
-                </button>
-            </div>
-
-            <div class="response-container">
+            <div class="insights" id="insights">
+                <h2>AI Insights:</h2>
                 <div id="loading" class="loading" style="display: none;">
-                    <div class="spinner"></div>
-                    <p>AI Co-Pilot is analyzing securely...</p>
+                    <span>Request sent. AI is analyzing...</span>
+                    <div class="progress-bar"></div>
                 </div>
                 <div id="responseArea" class="response"></div>
             </div>
         </main>
-
-        <section class="history-section">
-            <div class="tab-header">
-                <h3>Session Analytics & History</h3>
-                <button id="clearHistory">Clear History</button>
-            </div>
-            <div id="historyList" class="history-list"></div>
-        </section>
 
         <footer class="footer">
             <p>AI Security Co-Pilot for Humans • Built and made with ❤️ by Victor Bosah and AI • Empowering the Future of Cyber Defense</p>
