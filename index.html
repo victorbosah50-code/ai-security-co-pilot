@@ -3,27 +3,29 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>AI Security Co-Pilot for Humans</title>
+    <title>AI Security Co-Pilot</title>
     <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500;700&family=Roboto:wght@300;400;500&display=swap" rel="stylesheet">
 </head>
 <body>
+    <div class="background"></div>
     <div class="container">
         <header class="header">
             <h1>AI Security Co-Pilot</h1>
-            <p>Your personal AI assistant for staying secure online.</p>
+            <p>Your intelligent digital guardian for online safety</p>
         </header>
 
         <main class="main">
-            <div class="input-box">
-                <textarea id="userInput" placeholder="e.g., Help make a strong password, check if this link is safe, analyze this email..."></textarea>
+            <div class="input-card">
+                <textarea id="userInput" placeholder="Ask about passwords, phishing, links, privacy, threats..."></textarea>
                 <button id="analyzeBtn">Analyze</button>
             </div>
 
-            <div class="insights" id="insights">
-                <h2>AI Insights:</h2>
+            <div class="response-card" id="insights">
+                <h2>AI Insights</h2>
                 <div id="loading" class="loading" style="display: none;">
-                    <span>Request sent. AI is analyzing...</span>
-                    <div class="progress-bar"></div>
+                    <div class="loader"></div>
+                    <span>AI is analyzing securely...</span>
                 </div>
                 <div id="responseArea" class="response"></div>
             </div>
