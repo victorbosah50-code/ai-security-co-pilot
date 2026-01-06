@@ -7,7 +7,6 @@ on:
 jobs:
   ai-analysis:
     runs-on: ubuntu-latest
-
     steps:
       - name: Call OpenAI API
         env:
