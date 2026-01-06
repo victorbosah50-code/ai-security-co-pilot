@@ -4,180 +4,197 @@
     box-sizing: border-box;
 }
 
-html {
-    scroll-behavior: smooth; /* Smooth scrolling */
-}
-
 body {
-    font-family: 'Roboto', sans-serif;
-    background: linear-gradient(135deg, #0f2027, #203a43, #2c5364);
-    color: #e0f7fa;
+    font-family: 'Inter', sans-serif;
+    background: #f9f5f0; /* Soft cream background */
+    color: #1e1e1e; /* Deep black/dark text for readability */
     min-height: 100vh;
     line-height: 1.6;
 }
 
-.page-container {
-    max-width: 900px;
+.container {
+    max-width: 1000px;
     margin: 0 auto;
     padding: 40px 20px;
-    min-height: 100vh;
     display: flex;
     flex-direction: column;
+    min-height: 100vh;
 }
 
 .header {
     text-align: center;
-    margin-bottom: 60px;
+    margin-bottom: 50px;
 }
 
 .header h1 {
     font-family: 'Orbitron', sans-serif;
-    font-size: 3.5rem;
-    font-weight: 700;
-    color: #00ffff;
-    text-shadow: 0 0 30px rgba(0, 255, 255, 0.8);
-    margin-bottom: 16px;
+    font-size: 3.2rem;
+    color: #2c3e50;
+    margin-bottom: 12px;
 }
 
 .header p {
-    font-size: 1.5rem;
-    opacity: 0.9;
+    font-size: 1.4rem;
+    color: #34495e;
 }
 
-/* Input Card - Larger & Centered */
-.input-card {
-    background: rgba(255, 255, 255, 0.08);
-    backdrop-filter: blur(12px);
-    border-radius: 28px;
+/* Mode Buttons - Average Size */
+.mode-buttons {
+    display: flex;
+    justify-content: center;
+    gap: 16px;
+    margin-bottom: 40px;
+    flex-wrap: wrap;
+}
+
+.mode-btn {
+    padding: 12px 32px;
+    background: #ffffff;
+    border: 1px solid #dcdcdc;
+    border-radius: 12px;
+    color: #2c3e50;
+    font-size: 1.1rem;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+}
+
+.mode-btn.active, .mode-btn:hover {
+    background: #3498db;
+    color: white;
+    box-shadow: 0 8px 20px rgba(52, 152, 219, 0.3);
+}
+
+/* Input Section */
+.input-section {
+    background: #ffffff;
+    border-radius: 24px;
     padding: 40px;
-    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.5);
-    border: 1px solid rgba(0, 255, 255, 0.3);
-    margin-bottom: 60px;
+    box-shadow: 0 10px 40px rgba(0,0,0,0.08);
+    margin-bottom: 50px;
     text-align: center;
 }
 
-#userInput {
+.input-group textarea, .input-group input[type="url"] {
     width: 100%;
-    height: 200px; /* Much larger for comfortable typing */
+    height: 200px;
     padding: 24px;
-    background: rgba(255, 255, 255, 0.1);
-    border: 1px solid rgba(0, 255, 255, 0.4);
-    border-radius: 20px;
-    color: white;
-    font-size: 1.3rem;
+    background: #f9f5f0;
+    border: 1px solid #e0e0e0;
+    border-radius: 16px;
+    color: #1e1e1e;
+    font-size: 1.2rem;
     resize: vertical;
     margin-bottom: 30px;
-    transition: all 0.3s;
 }
 
-#userInput:focus {
-    outline: none;
-    border-color: #00ffff;
-    box-shadow: 0 0 30px rgba(0, 255, 255, 0.5);
+.input-group input[type="url"] {
+    height: 70px;
 }
 
-/* Average-sized Analyze Button */
+.input-group input[type="file"] {
+    width: 100%;
+    padding: 16px;
+    background: #f9f5f0;
+    border: 1px solid #e0e0e0;
+    border-radius: 12px;
+    margin-bottom: 16px;
+}
+
+.note {
+    font-size: 1rem;
+    color: #7f8c8d;
+}
+
+/* Analyze Button - Average Size */
 #analyzeBtn {
-    padding: 18px 70px;
-    background: #00ffff;
-    color: #000;
-    font-size: 1.4rem;
-    font-weight: bold;
+    padding: 16px 60px;
+    background: #3498db;
+    color: white;
+    font-size: 1.3rem;
+    font-weight: 600;
     border: none;
     border-radius: 50px;
     cursor: pointer;
-    transition: all 0.4s;
-    box-shadow: 0 8px 30px rgba(0, 255, 255, 0.5);
+    transition: all 0.3s ease;
+    box-shadow: 0 8px 25px rgba(52, 152, 219, 0.3);
 }
 
 #analyzeBtn:hover {
-    transform: translateY(-6px);
-    box-shadow: 0 15px 40px rgba(0, 255, 255, 0.7);
-    background: #00e0e0;
+    background: #2980b9;
+    transform: translateY(-4px);
+    box-shadow: 0 12px 35px rgba(52, 152, 219, 0.4);
 }
 
-/* Results Card */
-.results-card {
-    background: rgba(0, 0, 0, 0.4);
-    backdrop-filter: blur(12px);
-    border-radius: 28px;
+/* Results Section */
+.results-section {
+    background: #ffffff;
+    border-radius: 24px;
     padding: 40px;
-    border: 1px solid rgba(0, 255, 255, 0.3);
-    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.4);
-    margin-bottom: 60px;
-    text-align: left;
+    box-shadow: 0 10px 40px rgba(0,0,0,0.08);
+    margin-bottom: 50px;
 }
 
-.results-card h2 {
-    color: #00ffff;
-    text-shadow: 0 0 15px rgba(0, 255, 255, 0.6);
+.results-section h2 {
     font-size: 2.2rem;
+    color: #2c3e50;
     text-align: center;
     margin-bottom: 30px;
 }
 
 .response {
     white-space: pre-wrap;
-    font-size: 1.2rem;
-    line-height: 1.8;
+    font-size: 1.15rem;
+    color: #34495e;
     min-height: 150px;
 }
 
-/* Loading with Progress Bar */
+/* Loader */
 .loading {
     text-align: center;
-    color: #00ffff;
+    color: #3498db;
     font-size: 1.2rem;
-    margin: 40px 0;
 }
 
-.progress-bar {
-    height: 10px;
-    width: 70%;
+.loader {
+    width: 60px;
+    height: 60px;
+    border: 5px solid #e0e0e0;
+    border-top: 5px solid #3498db;
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
     margin: 20px auto;
-    background: rgba(0, 255, 255, 0.2);
-    border-radius: 5px;
-    overflow: hidden;
 }
 
-.progress-fill {
-    height: 100%;
-    width: 100%;
-    background: #00ffff;
-    box-shadow: 0 0 20px #00ffff;
-    animation: progress 3s infinite ease-in-out;
-}
-
-@keyframes progress {
-    0% { transform: translateX(-100%); }
-    50% { transform: translateX(0%); }
-    100% { transform: translateX(100%); }
+@keyframes spin {
+    to { transform: rotate(360deg); }
 }
 
 /* History */
 .history-section {
-    background: rgba(0, 0, 0, 0.3);
+    background: #ffffff;
     border-radius: 20px;
     padding: 30px;
-    margin-bottom: 60px;
+    box-shadow: 0 8px 30px rgba(0,0,0,0.06);
+    margin-bottom: 50px;
 }
 
 .history-section summary {
     font-size: 1.5rem;
-    color: #00ffff;
+    color: #2c3e50;
     cursor: pointer;
     text-align: center;
-    margin-bottom: 20px;
 }
 
 #clearHistory {
     display: block;
     margin: 20px auto 0;
-    padding: 12px 30px;
-    background: #ff3366;
+    padding: 12px 32px;
+    background: #e74c3c;
     color: white;
     border: none;
-    border-radius: 10px;
+    border-radius: 12px;
     cursor: pointer;
 }
 
@@ -185,7 +202,7 @@ body {
 .footer {
     text-align: center;
     font-size: 1.1rem;
-    opacity: 0.8;
+    color: #7f8c8d;
     margin-top: auto;
     padding-top: 40px;
 }
