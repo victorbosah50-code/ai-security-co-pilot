@@ -5,27 +5,40 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>AI Security Co-Pilot</title>
     <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500;700&family=Roboto:wght@300;400&display=swap" rel="stylesheet">
 </head>
 <body>
     <div class="container">
-        <h1>AI Security Co-Pilot</h1>
-        <p>Your personal AI assistant for staying secure online.</p>
-        
-        <div class="input-area">
-            <textarea id="userInput" placeholder="e.g., Help make a strong password, check if this email is phishing, etc."></textarea>
-            <button id="analyzeBtn">Analyze</button>
-        </div>
-        
-        <div class="insights" id="insights">
-            <h2>AI Insights:</h2>
-            <div id="responseArea"></div>
-            <div id="loading" style="display: none;">
-                <span>Request sent. AI is analyzing...</span>
-                <div class="progress-bar"></div>
+        <header class="header">
+            <h1>AI Security Co-Pilot</h1>
+            <p>Your intelligent guardian for staying secure online</p>
+        </header>
+
+        <main class="chat-area">
+            <div class="input-container">
+                <textarea id="userInput" placeholder="Ask me anything about passwords, phishing, privacy, scams..."></textarea>
+                <button id="analyzeBtn">
+                    <span>Analyze</span>
+                    <svg class="send-icon" viewBox="0 0 24 24">
+                        <path d="M2 21l21-9L2 3v7l15 2-15 2v7z"/>
+                    </svg>
+                </button>
             </div>
-        </div>
+
+            <div class="insights" id="insights">
+                <div id="loading" class="loading" style="display: none;">
+                    <div class="spinner"></div>
+                    <p>AI is thinking securely...</p>
+                </div>
+                <div id="responseArea" class="response"></div>
+            </div>
+        </main>
+
+        <footer class="footer">
+            <p>Made with ❤️ by humans and AI</p>
+        </footer>
     </div>
-    
+
     <script src="script.js"></script>
 </body>
 </html>
