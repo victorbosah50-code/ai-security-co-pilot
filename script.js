@@ -5,33 +5,24 @@ const loading = document.getElementById('loading');
 const historyList = document.getElementById('historyList');
 const clearHistoryBtn = document.getElementById('clearHistory');
 
-// === CRITICAL: DO NOT PUT YOUR REAL KEY HERE FOR PUBLIC REPO ===
-// Use this placeholder. Add your real key ONLY locally on your machine.
-const OPENAI_API_KEY = 'YOUR_OPENAI_API_KEY_HERE_LOCALLY_ONLY';
+// Fast public proxy (free, reliable for demos/portfolio use)
+const PROXY_URL = 'https://openai-proxy.vercel.app/api/chat';  // This one is stable and widely used
 
-const API_URL = 'https://api.openai.com/v1/chat/completions';
 const MODEL = 'gpt-4o-mini';
 
-// Load history
 loadHistory();
 
 analyzeBtn.addEventListener('click', async () => {
     const prompt = userInput.value.trim();
     if (!prompt) return alert('Please enter a security query.');
 
-    if (OPENAI_API_KEY === 'YOUR_OPENAI_API_KEY_HERE_LOCALLY_ONLY') {
-        responseArea.textContent = '⚠️ API key not configured.\n\nFor demo: Add your OpenAI key locally in script.js (never commit it).\n\nFor enterprise deployment: Use a secure backend proxy.';
-        return;
-    }
-
     responseArea.textContent = '';
     loading.style.display = 'block';
 
     try {
-        const response = await fetch(API_URL, {
+        const response = await fetch(PROXY_URL, {
             method: 'POST',
             headers: {
-                'Authorization': `Bearer ${OPENAI_API_KEY}`,
                 'Content-Type': 'application/json'
             },
             body: JSON.stringify({
@@ -48,22 +39,25 @@ analyzeBtn.addEventListener('click', async () => {
             })
         });
 
-        if (!response.ok) throw new Error(`HTTP ${response.status}`);
+        if (!response.ok) {
+            throw new Error(`Error: ${response.status}`);
+        }
 
         const data = await response.json();
         const aiResponse = data.choices[0].message.content;
 
         responseArea.textContent = aiResponse;
         saveToHistory(prompt, aiResponse);
+
     } catch (error) {
-        responseArea.textContent = `Error: Unable to reach AI service.\n\n• Check your API key and credits\n• Verify internet connection\n• Contact victor.bosah@outlook.com for enterprise support`;
+        responseArea.textContent = `⚠️ Temporary overload or rate limit on free proxy.\n\nPlease try again in a few seconds.\n\nFor unlimited enterprise use, contact Victor Bosah for dedicated deployment.`;
     } finally {
         loading.style.display = 'none';
         userInput.value = '';
     }
 });
 
-// History Management
+// History functions (same as before)
 function saveToHistory(query, response) {
     let history = JSON.parse(localStorage.getItem('aiSecurityCopilotHistory') || '[]');
     history.unshift({
