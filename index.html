@@ -5,46 +5,26 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>AI Security Co-Pilot</title>
     <link rel="stylesheet" href="style.css">
-    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500;700&family=Roboto:wght@300;400;500&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500;700&family=Roboto:wght@300;400&display=swap" rel="stylesheet">
 </head>
 <body>
-    <div class="background"></div>
-    <div class="container">
+    <div class="page-container">
         <header class="header">
             <h1>AI Security Co-Pilot</h1>
-            <p>Your intelligent digital guardian for online safety</p>
+            <p>Your personal AI assistant for staying secure online.</p>
         </header>
 
         <main class="main">
-            <div class="mode-selector">
-                <button class="mode-btn active" data-mode="general">General Query</button>
-                <button class="mode-btn" data-mode="link">Link Scan</button>
-                <button class="mode-btn" data-mode="email">Email Scan</button>
-                <button class="mode-btn" data-mode="file">File Scan</button>
-            </div>
-
             <div class="input-card">
-                <div id="general-input" class="input-group">
-                    <textarea id="userInputGeneral" placeholder="Ask about passwords, phishing, privacy, threats, or paste any suspicious content..."></textarea>
-                </div>
-                <div id="link-input" class="input-group" style="display:none;">
-                    <input type="url" id="userInputLink" placeholder="https://suspicious-link.example">
-                </div>
-                <div id="email-input" class="input-group" style="display:none;">
-                    <textarea id="userInputEmail" placeholder="Paste full email body here to scan for phishing, scams, or threats..."></textarea>
-                </div>
-                <div id="file-input" class="input-group" style="display:none;">
-                    <input type="file" id="userInputFile" accept=".txt,.log,.pdf,.docx,.html">
-                    <p class="note">Upload text-based files for AI-powered risk analysis</p>
-                </div>
+                <textarea id="userInput" placeholder="e.g., Help make a strong password, check if this link is safe, analyze this email..."></textarea>
                 <button id="analyzeBtn">Analyze</button>
             </div>
 
-            <div class="results-tab">
-                <h2>Results & Insights</h2>
+            <div class="results-card">
+                <h2>AI Insights</h2>
                 <div id="loading" class="loading" style="display: none;">
-                    <div class="loader"></div>
-                    <span>AI Co-Pilot is scanning securely...</span>
+                    <span>Request sent. AI is analyzing...</span>
+                    <div class="progress-bar"><div class="progress-fill"></div></div>
                 </div>
                 <div id="responseArea" class="response"></div>
             </div>
@@ -52,7 +32,7 @@
             <details class="history-section">
                 <summary>Session History</summary>
                 <div id="historyList" class="history-list"></div>
-                <button id="clearHistory">Clear All History</button>
+                <button id="clearHistory">Clear History</button>
             </details>
         </main>
 
