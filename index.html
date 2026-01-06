@@ -5,37 +5,43 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>AI Security Co-Pilot</title>
     <link rel="stylesheet" href="style.css">
-    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500;700&family=Roboto:wght@300;400&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
 </head>
 <body>
     <div class="container">
         <header class="header">
             <h1>AI Security Co-Pilot</h1>
-            <p>Your intelligent guardian for staying secure online</p>
+            <p>Your enterprise-grade AI guardian for digital safety and compliance</p>
         </header>
 
         <main class="chat-area">
             <div class="input-container">
-                <textarea id="userInput" placeholder="Ask me anything about passwords, phishing, privacy, scams..."></textarea>
+                <textarea id="userInput" placeholder="Ask about password strength, phishing detection, compliance, threat analysis..."></textarea>
                 <button id="analyzeBtn">
-                    <span>Analyze</span>
-                    <svg class="send-icon" viewBox="0 0 24 24">
-                        <path d="M2 21l21-9L2 3v7l15 2-15 2v7z"/>
-                    </svg>
+                    <span>Analyze Securely</span>
                 </button>
             </div>
 
-            <div class="insights" id="insights">
+            <div class="response-container">
                 <div id="loading" class="loading" style="display: none;">
                     <div class="spinner"></div>
-                    <p>AI is thinking securely...</p>
+                    <p>AI is securely analyzing your request...</p>
                 </div>
                 <div id="responseArea" class="response"></div>
             </div>
         </main>
 
+        <!-- History Tab -->
+        <section class="history-section">
+            <div class="tab-header">
+                <h3>Session History</h3>
+                <button id="clearHistory">Clear All</button>
+            </div>
+            <div id="historyList" class="history-list"></div>
+        </section>
+
         <footer class="footer">
-            <p>Made with ❤️ by humans and AI</p>
+            <p>Made with ❤️ by humans and AI • Enterprise-Ready Security Intelligence</p>
         </footer>
     </div>
 
