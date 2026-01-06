@@ -22,7 +22,7 @@
 <h2>AI Insights:</h2>
 <div id="output"></div>
 <div id="risk-meter">
-  <div id="risk-level"></div>
+<div id="risk-level"></div>
 </div>
 </section>
 
@@ -36,63 +36,6 @@
 <p>Built with ❤️ by Humans & AI | Hosted on GitHub Pages</p>
 </footer>
 
-<script>
-const analyzeBtn = document.getElementById("analyze-btn");
-const userInput = document.getElementById("user-input");
-const output = document.getElementById("output");
-const riskLevel = document.getElementById("risk-level");
-const historyList = document.getElementById("history");
-
-let history = JSON.parse(localStorage.getItem("aiSecurityHistory")) || [];
-renderHistory();
-
-analyzeBtn.addEventListener("click", async () => {
-  const text = userInput.value.trim();
-  if (!text) return alert("Please enter text to analyze.");
-
-  addHistory(text);
-
-  output.textContent = "Analyzing...";
-  riskLevel.style.width = "0";
-
-  try {
-    const res = await fetch('https://api.github.com/repos/victorbosah50/ai-security-co-pilot/dispatches', {
-      method: 'POST',
-      headers: {
-        'Accept': 'application/vnd.github.everest-preview+json',
-        'Authorization': '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'
-      },
-      body: JSON.stringify({
-        event_type: 'ai_request',
-        client_payload: { user_input: text }
-      })
-    });
-    if(res.ok) {
-      output.textContent = "✅ Request sent. Check GitHub Actions for AI output!";
-    } else {
-      output.textContent = "❌ Error sending request";
-    }
-  } catch (err) {
-    console.error(err);
-    output.textContent = "❌ Network error";
-  }
-});
-
-function addHistory(text){
-  history.unshift({text, date: new Date().toLocaleString()});
-  if(history.length>10) history.pop();
-  localStorage.setItem("aiSecurityHistory", JSON.stringify(history));
-  renderHistory();
-}
-
-function renderHistory(){
-  historyList.innerHTML = "";
-  history.forEach(item => {
-    const li = document.createElement("li");
-    li.textContent = `[${item.date}] ${item.text}`;
-    historyList.appendChild(li);
-  });
-}
-</script>
+<script src="script.js"></script>
 </body>
 </html>
