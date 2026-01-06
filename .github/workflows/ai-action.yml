@@ -1,0 +1,28 @@
+name: AI Security Co-Pilot Request
+
+on:
+  repository_dispatch:
+    types: [ai_request]
+
+jobs:
+  ai-analysis:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Call OpenAI API
+        env:
+          OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
+        run: |
+          INPUT="${{ github.event.client_payload.user_input }}"
+          RESPONSE=$(curl https://api.openai.com/v1/chat/completions \
+            -H "Content-Type: application/json" \
+            -H "Authorization: Bearer $OPENAI_API_KEY" \
+            -d '{
+              "model": "gpt-4",
+              "messages":[
+                {"role":"system","content":"You are a cybersecurity expert AI assistant."},
+                {"role":"user","content":"'"$INPUT"'"}
+              ],
+              "max_tokens":250
+            }')
+          echo "AI RESPONSE: $RESPONSE"
