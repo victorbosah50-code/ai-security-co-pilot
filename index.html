@@ -5,39 +5,58 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>AI Security Co-Pilot</title>
     <link rel="stylesheet" href="style.css">
-    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500;700&family=Roboto:wght@300;400&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Orbitron:wght@500;700&display=swap" rel="stylesheet">
 </head>
 <body>
-    <div class="page-container">
+    <div class="container">
         <header class="header">
             <h1>AI Security Co-Pilot</h1>
-            <p>Your personal AI assistant for staying secure online.</p>
+            <p>Your intelligent guardian for online safety and threat analysis</p>
         </header>
 
-        <main class="main">
-            <div class="input-card">
-                <textarea id="userInput" placeholder="e.g., Help make a strong password, check if this link is safe, analyze this email..."></textarea>
-                <button id="analyzeBtn">Analyze</button>
+        <section class="mode-section">
+            <div class="mode-buttons">
+                <button class="mode-btn active" data-mode="general">General Query</button>
+                <button class="mode-btn" data-mode="link">Link Scan</button>
+                <button class="mode-btn" data-mode="email">Email Scan</button>
+                <button class="mode-btn" data-mode="file">File Scan</button>
             </div>
+        </section>
 
-            <div class="results-card">
-                <h2>AI Insights</h2>
-                <div id="loading" class="loading" style="display: none;">
-                    <span>Request sent. AI is analyzing...</span>
-                    <div class="progress-bar"><div class="progress-fill"></div></div>
-                </div>
-                <div id="responseArea" class="response"></div>
+        <section class="input-section">
+            <div id="general-input" class="input-group">
+                <textarea id="userInputGeneral" placeholder="Ask about passwords, phishing, privacy, threats, or any security concern..."></textarea>
             </div>
+            <div id="link-input" class="input-group" style="display:none;">
+                <input type="url" id="userInputLink" placeholder="Enter URL to scan for threats (e.g., https://example.com)">
+            </div>
+            <div id="email-input" class="input-group" style="display:none;">
+                <textarea id="userInputEmail" placeholder="Paste email content/body to analyze for phishing or risks..."></textarea>
+            </div>
+            <div id="file-input" class="input-group" style="display:none;">
+                <input type="file" id="userInputFile" accept=".txt,.log,.pdf,.docx,.html">
+                <p class="note">Attach a file for AI-powered content risk analysis (text-based files recommended)</p>
+            </div>
+            <button id="analyzeBtn">Analyze</button>
+        </section>
 
-            <details class="history-section">
-                <summary>Session History</summary>
-                <div id="historyList" class="history-list"></div>
-                <button id="clearHistory">Clear History</button>
-            </details>
-        </main>
+        <section class="results-section">
+            <h2>Results & Insights</h2>
+            <div id="loading" class="loading" style="display: none;">
+                <div class="loader"></div>
+                <span>AI is analyzing securely...</span>
+            </div>
+            <div id="responseArea" class="response"></div>
+        </section>
+
+        <details class="history-section">
+            <summary>Session History</summary>
+            <div id="historyList" class="history-list"></div>
+            <button id="clearHistory">Clear History</button>
+        </details>
 
         <footer class="footer">
-            <p>AI Security Co-Pilot for Humans • Built and made with ❤️ by Victor Bosah and AI • Empowering the Future of Cyber Defense</p>
+            <p>Made with ❤️ by Victor Bosah and AI</p>
         </footer>
     </div>
 
