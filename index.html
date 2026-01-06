@@ -4,23 +4,111 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width,initial-scale=1.0">
   <title>AI Security Co‑Pilot</title>
+  <!-- Google Font for modern feel -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet">
   <style>
+    /* Reset & font */
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
     body {
-      font-family: Arial, sans-serif;
-      margin: 2rem;
-      background: #f5f5f5;
+      font-family: 'Inter', sans-serif;
+      background: #0f111a;
+      color: #e0e0e0;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      min-height: 100vh;
+      padding: 2rem;
     }
-    #responseBox {
-      margin-top: 1rem;
+
+    h1 {
+      font-size: 2rem;
+      margin-bottom: 1rem;
+      color: #ffffff;
+      text-shadow: 0 0 10px #00fff7;
+    }
+
+    .container {
+      width: 100%;
+      max-width: 700px;
+      background: #1a1c29;
+      border-radius: 12px;
+      padding: 2rem;
+      box-shadow: 0 0 20px rgba(0, 255, 247, 0.2);
+    }
+
+    label {
+      font-weight: 600;
+      margin-bottom: 0.5rem;
+      display: block;
+      color: #a0a0a0;
+    }
+
+    textarea {
+      width: 100%;
+      border-radius: 8px;
+      border: none;
       padding: 1rem;
-      background: #fff;
-      border: 1px solid #ddd;
-      min-height: 80px;
+      font-size: 1rem;
+      background: #2a2c3c;
+      color: #fff;
+      resize: vertical;
     }
+
+    textarea:focus {
+      outline: 2px solid #00fff7;
+    }
+
+    button {
+      margin-top: 1rem;
+      padding: 0.75rem 1.5rem;
+      font-size: 1rem;
+      font-weight: 600;
+      background: #00fff7;
+      color: #0f111a;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: all 0.3s ease;
+    }
+
+    button:hover {
+      background: #00d1c7;
+      transform: translateY(-2px);
+      box-shadow: 0 4px 12px rgba(0, 255, 247, 0.3);
+    }
+
     #loading {
       margin-top: 1rem;
       font-style: italic;
-      color: #444;
+      color: #00fff7;
+    }
+
+    #responseBox {
+      margin-top: 1rem;
+      background: #2a2c3c;
+      padding: 1rem;
+      border-radius: 8px;
+      min-height: 100px;
+      line-height: 1.5;
+      white-space: pre-wrap;
+      color: #fff;
+    }
+
+    footer {
+      margin-top: 2rem;
+      font-size: 0.9rem;
+      color: #555;
+      text-align: center;
+    }
+
+    @media (max-width: 600px) {
+      .container {
+        padding: 1rem;
+      }
     }
   </style>
 </head>
@@ -28,15 +116,17 @@
 
   <h1>AI Security Co‑Pilot</h1>
 
-  <label for="userInput">Ask a security‑related question:</label><br>
-  <textarea id="userInput" rows="4" cols="50" placeholder="e.g., Help make a password"></textarea><br><br>
+  <div class="container">
+    <label for="userInput">Enter a security question or task:</label>
+    <textarea id="userInput" rows="4" placeholder="e.g., Help me make a strong password"></textarea>
+    <button id="analyzeBtn">Analyze</button>
+    <div id="loading" style="display:none;">Request sent. AI is analyzing...</div>
+    <div id="responseBox"></div>
+  </div>
 
-  <button id="analyzeBtn">Analyze</button>
-
-  <div id="loading" style="display:none;">Request sent. AI is analyzing...</div>
-
-  <h2>AI Insights:</h2>
-  <div id="responseBox"></div>
+  <footer>
+    Made with 💻 by Victor
+  </footer>
 
   <script>
     const analyzeBtn = document.getElementById("analyzeBtn");
@@ -51,13 +141,11 @@
         return;
       }
 
-      // Show loading
       loading.style.display = "block";
       responseBox.textContent = "";
 
       try {
-        // Call backend AI (OpenAI example below)
-        const openaiApiKey = "YOUR_OPENAI_API_KEY_HERE"; // <-- Put your key here
+        const openaiApiKey = "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"; // <-- Insert your key
 
         const response = await fetch("https://api.openai.com/v1/chat/completions", {
           method: "POST",
@@ -66,28 +154,24 @@
             "Authorization": "Bearer " + openaiApiKey
           },
           body: JSON.stringify({
-            model: "gpt‑5‑mini",     // or the model you want
+            model: "gpt-5-mini",
             messages: [
-              { role: "system", content: "You are an AI assistant that helps evaluate security prompts." },
+              { role: "system", content: "You are an AI assistant that provides security advice and analysis." },
               { role: "user", content: prompt }
             ],
             max_tokens: 250
           })
         });
 
-        if (!response.ok) {
-          throw new Error("AI API error");
-        }
+        if (!response.ok) throw new Error("AI API error");
 
         const data = await response.json();
         const aiText = data.choices[0].message.content.trim();
-
-        // Display AI response
         responseBox.textContent = aiText;
 
       } catch (err) {
         console.error(err);
-        responseBox.textContent = "Error: Unable to get response from AI.";
+        responseBox.textContent = "Error: Unable to get a response from AI.";
       } finally {
         loading.style.display = "none";
       }
