@@ -1,57 +1,57 @@
-const analyzeBtn=document.getElementById("analyze-btn");
-const userInput=document.getElementById("user-input");
-const output=document.getElementById("output");
-const riskLevel=document.getElementById("risk-level");
-const historyList=document.getElementById("history");
+const analyzeBtn = document.getElementById('analyzeBtn');
+const userInput = document.getElementById('userInput');
+const responseArea = document.getElementById('responseArea');
+const loading = document.getElementById('loading');
 
-let history=JSON.parse(localStorage.getItem("aiSecurityHistory"))||[];
-renderHistory();
+const GROQ_API_KEY = 'YOUR_GROQ_API_KEY_HERE';  // <-- PASTE YOUR GROQ API KEY HERE
 
-analyzeBtn.addEventListener("click",async()=>{
-  const text=userInput.value.trim();
-  if(!text) return alert("Please enter text to analyze.");
+analyzeBtn.addEventListener('click', async () => {
+    const prompt = userInput.value.trim();
+    if (!prompt) {
+        alert('Please enter something!');
+        return;
+    }
 
-  addHistory(text);
+    // Show loading
+    responseArea.textContent = '';
+    loading.style.display = 'block';
 
-  output.textContent="Analyzing...";
-  riskLevel.style.width="0";
+    try {
+        const response = await fetch('https://api.groq.com/openai/v1/chat/completions', {
+            method: 'POST',
+            headers: {
+                'Authorization': `Bearer ${GROQ_API_KEY}`,
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({
+                model: 'llama3-8b-8192',  // Fast and good for security advice
+                messages: [
+                    {
+                        role: 'system',
+                        content: 'You are an AI Security Co-Pilot. Help users stay safe online with clear, practical advice on passwords, phishing, scams, privacy, etc. Be friendly and concise.'
+                    },
+                    {
+                        role: 'user',
+                        content: prompt
+                    }
+                ],
+                temperature: 0.7,
+                max_tokens: 500
+            })
+        });
 
-  try{
-    await fetch("/.netlify/functions/trigger-ai",{  // Replace with GitHub Actions proxy URL
-      method:"POST",
-      headers:{"Content-Type":"application/json"},
-      body:JSON.stringify({user_input:text})
-    });
+        if (!response.ok) {
+            throw new Error(`API error: ${response.status}`);
+        }
 
-    output.textContent="✅ Request sent. AI is analyzing...";
+        const data = await response.json();
+        const aiResponse = data.choices[0].message.content;
 
-    let risk=0;
-    const lower=text.toLowerCase();
-    if(lower.includes("password")||lower.includes("login")) risk+=30;
-    if(lower.includes("phishing")||lower.includes("link")||lower.includes("email")) risk+=50;
-    if(lower.includes("url")||lower.includes("website")) risk+=20;
-    if(risk>100) risk=100;
-
-    riskLevel.style.width=`${risk}%`;
-    riskLevel.style.background=risk<40?"green":risk<70?"orange":"red";
-  }catch(err){
-    console.error(err);
-    output.textContent="❌ Network error";
-  }
+        responseArea.textContent = aiResponse;
+    } catch (error) {
+        console.error(error);
+        responseArea.textContent = 'Error: Could not get response. Check console for details (likely invalid/missing API key).';
+    } finally {
+        loading.style.display = 'none';
+    }
 });
-
-function addHistory(text){
-  history.unshift({text,date:new Date().toLocaleString()});
-  if(history.length>10) history.pop();
-  localStorage.setItem("aiSecurityHistory",JSON.stringify(history));
-  renderHistory();
-}
-
-function renderHistory(){
-  historyList.innerHTML="";
-  history.forEach(item=>{
-    const li=document.createElement("li");
-    li.textContent=`[${item.date}] ${item.text}`;
-    historyList.appendChild(li);
-  });
-}
