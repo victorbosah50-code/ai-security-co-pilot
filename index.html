@@ -3,45 +3,46 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>AI Security Co-Pilot</title>
+    <title>AI Security Co-Pilot for Humans</title>
     <link rel="stylesheet" href="style.css">
-    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Orbitron:wght@500;700&display=swap" rel="stylesheet">
 </head>
 <body>
     <div class="container">
         <header class="header">
-            <h1>AI Security Co-Pilot</h1>
-            <p>Your enterprise-grade AI guardian for digital safety and compliance</p>
+            <h1>AI Security Co-Pilot <span>for Humans</span></h1>
+            <p class="tagline">Empowering enterprise defenders with AI precision — without replacing human mastery.</p>
+            <p class="subtitle">Real-time threat analysis • Actionable insights • Human-centric cybersecurity intelligence</p>
         </header>
 
         <main class="chat-area">
             <div class="input-container">
-                <textarea id="userInput" placeholder="Ask about password strength, phishing detection, compliance, threat analysis..."></textarea>
+                <textarea id="userInput" placeholder="Analyze a suspicious email • Assess password strength • Evaluate cloud vulnerability • Detect phishing indicators • Explain zero-trust policy..."></textarea>
                 <button id="analyzeBtn">
-                    <span>Analyze Securely</span>
+                    <span>Analyze Threat</span>
                 </button>
             </div>
 
             <div class="response-container">
                 <div id="loading" class="loading" style="display: none;">
                     <div class="spinner"></div>
-                    <p>AI is securely analyzing your request...</p>
+                    <p>AI Co-Pilot is analyzing securely...</p>
                 </div>
                 <div id="responseArea" class="response"></div>
             </div>
         </main>
 
-        <!-- History Tab -->
+        <!-- Session History -->
         <section class="history-section">
             <div class="tab-header">
-                <h3>Session History</h3>
-                <button id="clearHistory">Clear All</button>
+                <h3>Session Analytics & History</h3>
+                <button id="clearHistory">Clear History</button>
             </div>
             <div id="historyList" class="history-list"></div>
         </section>
 
         <footer class="footer">
-            <p>Made with ❤️ by humans and AI • Enterprise-Ready Security Intelligence</p>
+            <p>AI Security Co-Pilot for Humans • Built by Victor Bosah • Empowering the Future of Cyber Defense</p>
         </footer>
     </div>
 
