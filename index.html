@@ -16,19 +16,44 @@
         </header>
 
         <main class="main">
+            <div class="mode-selector">
+                <button class="mode-btn active" data-mode="general">General Query</button>
+                <button class="mode-btn" data-mode="link">Link Scan</button>
+                <button class="mode-btn" data-mode="email">Email Scan</button>
+                <button class="mode-btn" data-mode="file">File Scan</button>
+            </div>
+
             <div class="input-card">
-                <textarea id="userInput" placeholder="Ask about passwords, phishing, links, privacy, threats..."></textarea>
+                <div id="general-input" class="input-group">
+                    <textarea id="userInputGeneral" placeholder="Ask about passwords, phishing, privacy, threats..."></textarea>
+                </div>
+                <div id="link-input" class="input-group" style="display:none;">
+                    <input type="url" id="userInputLink" placeholder="Enter suspicious URL (e.g., https://example.com)">
+                </div>
+                <div id="email-input" class="input-group" style="display:none;">
+                    <textarea id="userInputEmail" placeholder="Paste email body/content to scan for threats..."></textarea>
+                </div>
+                <div id="file-input" class="input-group" style="display:none;">
+                    <input type="file" id="userInputFile" accept=".txt,.log,.pdf,.docx">
+                    <p class="note">Text-based files supported. AI analyzes content for risks.</p>
+                </div>
                 <button id="analyzeBtn">Analyze</button>
             </div>
 
-            <div class="response-card" id="insights">
-                <h2>AI Insights</h2>
+            <div class="results-tab">
+                <h2>Results & Insights</h2>
                 <div id="loading" class="loading" style="display: none;">
                     <div class="loader"></div>
                     <span>AI is analyzing securely...</span>
                 </div>
                 <div id="responseArea" class="response"></div>
             </div>
+
+            <details class="history-section">
+                <summary>Session History</summary>
+                <div id="historyList" class="history-list"></div>
+                <button id="clearHistory">Clear History</button>
+            </details>
         </main>
 
         <footer class="footer">
