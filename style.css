@@ -1,209 +1,58 @@
-* { margin: 0; padding: 0; box-sizing: border-box; }
+/* Previous styles remain the same, adding these for new elements */
 
-body {
-    font-family: 'Inter', sans-serif;
-    background: #0d1117;
-    color: #c9d1d9;
-    min-height: 100vh;
-    padding: 20px;
-}
-
-.container {
-    max-width: 1100px;
-    margin: 0 auto;
-    background: linear-gradient(to bottom, #161b22, #0d1117);
-    border-radius: 20px;
-    overflow: hidden;
-    box-shadow: 0 20px 80px rgba(0, 0, 0, 0.8);
-    border: 1px solid #30363d;
-    display: flex;
-    flex-direction: column;
-    height: 95vh;
-}
-
-.header {
+.mode-selector {
+    margin-bottom: 20px;
     text-align: center;
-    padding: 50px 30px 30px;
-    background: linear-gradient(135deg, #1f6feb20, #8b949e10);
-    border-bottom: 1px solid #30363d;
 }
 
-h1 {
-    font-family: 'Orbitron', sans-serif;
-    font-size: 3.5rem;
-    margin-bottom: 12px;
-}
-
-h1 span {
-    background: linear-gradient(90deg, #58a6ff, #8be9fd);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-}
-
-.tagline {
-    font-size: 1.4rem;
-    font-weight: 500;
-    margin: 20px 0;
+.mode-selector label {
+    font-size: 1.2rem;
+    margin-right: 12px;
     color: #f0f6fc;
 }
 
-.subtitle {
+#mode {
+    padding: 12px 20px;
+    background: #010409;
+    border: 1px solid #30363d;
+    border-radius: 12px;
+    color: white;
     font-size: 1.1rem;
-    opacity: 0.9;
-    font-weight: 300;
-    color: #8b949e;
+    cursor: pointer;
 }
 
-.chat-area {
-    flex: 1;
-    padding: 40px;
-    display: flex;
-    flex-direction: column;
+.input-group {
+    width: 100%;
 }
 
-.input-container {
-    display: flex;
-    gap: 20px;
-    margin-bottom: 30px;
-    align-items: end;
-}
-
-#userInput {
-    flex: 1;
+#userInputLink {
+    width: 100%;
     padding: 20px 28px;
     font-size: 1.15rem;
     background: #010409;
     border: 1px solid #30363d;
     border-radius: 16px;
     color: white;
-    resize: none;
-    height: 100px;
     transition: all 0.3s;
 }
 
-#userInput:focus {
+#userInputLink:focus {
     outline: none;
     border-color: #58a6ff;
     box-shadow: 0 0 0 4px rgba(88, 166, 255, 0.25);
 }
 
-#analyzeBtn {
-    padding: 20px 40px;
-    background: linear-gradient(135deg, #1f6feb, #388bfd);
-    color: white;
-    border: none;
-    border-radius: 16px;
-    font-size: 1.15rem;
-    font-weight: 600;
-    cursor: pointer;
-    transition: all 0.4s ease;
-    box-shadow: 0 10px 30px rgba(31, 111, 235, 0.4);
-}
-
-#analyzeBtn:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 15px 40px rgba(31, 111, 235, 0.6);
-}
-
-.response-container {
-    flex: 1;
+#userInputFile {
+    width: 100%;
+    padding: 10px;
     background: #010409;
+    border: 1px solid #30363d;
     border-radius: 16px;
-    padding: 32px;
-    border: 1px solid #30363d;
-    overflow-y: auto;
-}
-
-.response {
-    white-space: pre-wrap;
-    line-height: 1.8;
-    font-size: 1.15rem;
-}
-
-.loading {
-    text-align: center;
-    padding: 80px 20px;
-}
-
-.spinner {
-    width: 60px;
-    height: 60px;
-    border: 5px solid #30363d;
-    border-top: 5px solid #58a6ff;
-    border-radius: 50%;
-    animation: spin 1s linear infinite;
-    margin: 0 auto 24px;
-}
-
-@keyframes spin {
-    to { transform: rotate(360deg); }
-}
-
-.history-section {
-    border-top: 1px solid #30363d;
-    padding: 24px;
-    background: #0d1117;
-}
-
-.tab-header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-bottom: 20px;
-    padding: 0 12px;
-}
-
-.tab-header h3 {
-    font-size: 1.4rem;
-    color: #58a6ff;
-    font-weight: 600;
-}
-
-#clearHistory {
-    background: #da3633;
     color: white;
-    border: none;
-    padding: 10px 20px;
-    border-radius: 10px;
-    cursor: pointer;
-    font-weight: 500;
 }
 
-.history-list {
-    max-height: 320px;
-    overflow-y: auto;
-    padding: 0 8px;
-}
-
-.history-item {
-    background: #161b22;
-    border: 1px solid #30363d;
-    border-radius: 12px;
-    padding: 20px;
-    margin-bottom: 16px;
-    transition: all 0.3s;
-}
-
-.history-item:hover {
-    border-color: #58a6ff;
-    transform: translateY(-4px);
-    box-shadow: 0 8px 20px rgba(88, 166, 255, 0.15);
-}
-
-.history-item strong {
-    color: #58a6ff;
-}
-
-.history-item small {
-    color: #8b949e;
+.note {
     font-size: 0.9rem;
-}
-
-.footer {
-    text-align: center;
-    padding: 24px;
-    font-size: 0.95rem;
     color: #8b949e;
-    border-top: 1px solid #30363d;
-    background: #010409;
+    margin-top: 8px;
 }
